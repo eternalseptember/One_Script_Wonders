@@ -3,10 +3,24 @@ body {
 	height: 100%;
 }
 
-#main_container {
+div {
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
 	justify-content: center;
 	align-items: center;
+}
+
+#main_container {
+	width: 100%;
+
+}
+
+#image_title {
+	color: white;
+	width: 100%;
+}
+
+#image_container {
+	width: 100%;
 }
