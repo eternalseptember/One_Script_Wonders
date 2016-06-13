@@ -53,26 +53,27 @@
 	<script type="text/javascript">
 		$("document").ready(function() {
 			//alert("Document loaded");
+
+			function slideshow() {
+				var value_selected = $("#select_image").val();
+				// Changes the header or image title
+				$("#image_title").html("<h3>" + value_selected + "</h3>").show();
+				// Sets the thumbnail image
+				var image_name = "images/resized/" + value_selected + ".png";
+				$(".selected_image").attr("src", image_name);
+				// Sets the link for the larger image
+				var orig_image_name = "images/original/" + value_selected + ".jpg";
+				$(".original_image").attr("href", orig_image_name);
+			};
+
 			// When the page first loads.
-			var value_selected = $("#select_image").val();
-			// Changes the header or image title
-			$("#image_title").html("<h3>" + value_selected + "</h3>").show();
-			// Sets the thumbnail image
-			var image_name = "images/resized/" + value_selected + ".png";
-			$(".selected_image").attr("src", image_name);
-			// Sets the link for the larger image
-			var orig_image_name = "images/original/" + value_selected + ".jpg";
-			$(".original_image").attr("href", orig_image_name);
+			slideshow();
 
 			// And when the dropdown box changes.
 			$('select').on('change', function() {
-				var value_selected = $("#select_image").val();
-				$("#image_title").html("<h3>" + value_selected + "</h3>").show();
-				var image_name = "images/resized/" + value_selected + ".png";
-				$(".selected_image").attr("src", image_name);
-				var orig_image_name = "images/original/" + value_selected + ".jpg";
-				$(".original_image").attr("href", orig_image_name);
+				slideshow()
 			});
+
 		});
 
 	</script>
