@@ -1,0 +1,36 @@
+body {
+	background-color: white;
+	height: 100%;
+}
+
+div {
+/*
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+*/
+
+	text-align: center;
+}
+
+table {
+	display: inline-block;
+	margin: 0 auto;
+	font-size: xx-large;
+}
+
+td {
+	border: 1px solid black;
+	padding: 2px 6px 2px 6px;
+}
+
+td:hover {
+	background-color: #D5F5E3;
+}
+
+td a {
+	color: black;
+	text-decoration: none;
+}
