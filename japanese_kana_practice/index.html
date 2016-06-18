@@ -19,8 +19,8 @@
 				<th colspan="5">Hiragana</th>
 			</tr>
 			<tr>
-				<td><a href="#" class="playSound">&#12354;</a></td>
-				<td>&#12356;</td>
+				<td><a href="a" class="playSound">&#12354;</a></td>
+				<td><a href="i" class="playSound">&#12356;</a></td>
 				<td>&#12358;</td>
 				<td>&#12360;</td>
 				<td>&#12362;</td>
@@ -60,15 +60,25 @@
 
 	<script type="text/javascript">
 		$("document").ready(function() {
-			//alert("Document loaded");
-			var obj = document.createElement("audio");
-			obj.src="sounds/a.mp3";
-			obj.autoplay=false;
-			obj.preload=true;
+			alert("Document loaded");
+			$('.playSound').click(function() {
+				var obj = document.createElement("audio");
+				var letter = $(this).attr("href");
+				obj.src="sounds/" + letter + ".mp3";
+				obj.autoplay = true;
+				obj.preload = true;
+				obj.play();
+			});		
 
+			/*
 			$(".playSound").click(function() {
+				var obj = document.createElement("audio");
+				obj.src="sounds/a.mp3";
+				//obj.autoplay=true;
+				//obj.preload=true;
 				obj.play();
 			});
+			*/
 
 		});
 
