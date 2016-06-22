@@ -3,9 +3,11 @@
 <head>
 	<title>Hiragana &amp; Katakana Chart</title>
 	<link rel="stylesheet" href="style.css">
+	<!--
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	-->
 </head>
 
 <body>
@@ -19,11 +21,11 @@
 				<th colspan="5">Hiragana</th>
 			</tr>
 			<tr>
-				<td><a href="a" class="playSound">&#12354;</a></td>
-				<td><a href="i" class="playSound">&#12356;</a></td>
-				<td>&#12358;</td>
-				<td>&#12360;</td>
-				<td>&#12362;</td>
+				<td><a href="JavaScript:void(0)" onclick="playSound('a')">&#12354;</a></td>
+				<td><a href="JavaScript:void(0)" onclick="playSound('i')">&#12356;</a></td>
+				<td><a href="JavaScript:void(0)" onclick="playSound('u')">&#12358;</a></td>
+				<td><a href="JavaScript:void(0)" onclick="playSound('e')">&#12360;</a></td>
+				<td><a href="JavaScript:void(0)" onclick="playSound('o')">&#12362;</a></td>
 			</tr>
 			<tr>
 				<td>&#12363;</td>
@@ -59,29 +61,17 @@
 	</div>
 
 	<script type="text/javascript">
-		$("document").ready(function() {
-			alert("Document loaded");
-			$('.playSound').click(function() {
-				var obj = document.createElement("audio");
-				var letter = $(this).attr("href");
-				obj.src="sounds/" + letter + ".mp3";
-				obj.autoplay = true;
-				obj.preload = true;
-				obj.play();
-			});		
+		function playSound(letter) {
+			var obj = document.createElement("audio");
+			obj.src="sounds/" + letter + ".mp3";
+			obj.play();
+		};
 
-			/*
-			$(".playSound").click(function() {
-				var obj = document.createElement("audio");
-				obj.src="sounds/a.mp3";
-				//obj.autoplay=true;
-				//obj.preload=true;
-				obj.play();
-			});
-			*/
-
+		/*
+		$('document').ready(function() {
+			alert("Document loaded.");
 		});
-
+		*/
 	</script>
 </body>
 
