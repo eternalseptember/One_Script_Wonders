@@ -4,24 +4,20 @@ body {
 }
 
 div {
-/*
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
-	justify-content: center;
-	align-items: center;
-*/
-
 	text-align: center;
 }
 
-table {
+.kana {
 	display: inline-block;
+}
+
+table {
 	margin: 0 auto;
 	font-size: xx-large;
 }
 
 td {
+	text-align: center;
 	border: 1px solid black;
 	padding: 2px 6px 2px 6px;
 }
