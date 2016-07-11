@@ -8,23 +8,59 @@
 		<title>Kana Flashcards</title>
 		
 		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/flashcard.css" rel="stylesheet">
 		<script src="js/angular-1.5.7.js"></script>
 		<script src="js/flashcard.js"></script>
 	</head>
 
-	<body ng-controller="KanaController">
-		<div class="container">
+	<body ng-app="KanaFlash">
+		<div class="container" ng-controller="KanaController">
 			<div class="page-header">
 				<h1>Kana Flashcards</h1>
 			</div>
 
 			<div id="menu-options">
 				<!-- flashcards control here -->
+				<form id="kana_selection">
+					Hiragana or Katakana?<br>
+					<input type="radio" ng-model="kana_choice" value="hiragana">Hiragana only<br>
+					<input type="radio" ng-model="kana_choice" value="katakana">Katakana only<br>
+					<input type="radio" ng-model="kana_choice" value="both">Both
+				</form>
+				<form id="difficulty_selection">
+					Combination of?<br>
+					<!-- 
+					<input type="checkbox" name="difficulty_choice" value="basic">Basic kanas<br>
+					<input type="checkbox" name="difficulty_choice" value="voiced">Voiced kanas<br>
+					<input type="checkbox" name="difficulty_choice" value="combo">Combination kanas
+					-->
+					<span ng-repeat="(choice, enabled) in difficulty_choice">
+						<input type="checkbox" ng-model="difficulty_choice" />{{choice}}<br>
+					</span>
+				</form>
 			</div>
+
+			<br><br><br>
 
 			<div id="card-display">
 				<!-- display flashcard here -->
+				<div ng-switch="kana_choice">
+					<div ng-switch-when="hiragana">
+						You chose hiragana.
+					</div>
+
+					<div ng-switch-when="katakana">
+						You chose katakana.
+					</div>
+
+					<div ng-switch-when="both">
+						You chose both.
+					</div>
+				</div>
+				
+				<p>{{ difficulty_choice }}</p>
 			</div>
+
 		</div>
 
 
