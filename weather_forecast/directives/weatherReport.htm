@@ -1,0 +1,12 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title">{{ convertToDateFunction({ dt : weatherObject.dt }) | date: dateFormat }}</h3>
+	</div>
+	<div class="panel-body">
+		<p>Temperature: {{ weatherObject.temp.day }}</p>
+		<div ng-repeat="d in weatherObject.weather">
+			<p>Weather: {{ d.main }}</p>
+			<p>Description: {{ d.description }}</p>
+		</div>
+	</div>
+</div>

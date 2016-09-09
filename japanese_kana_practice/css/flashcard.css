@@ -1,3 +1,8 @@
 form {
 	display: inline-block;
+	text-align:left;
+}
+
+.container {
+	text-align: center;
 }
