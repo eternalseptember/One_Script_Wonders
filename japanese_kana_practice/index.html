@@ -1,414 +1,45 @@
-<html>
+<!DOCTYPE html>
+<html lang="en" ng-app="KanaFlash">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<head>
-	<title>Hiragana &amp; Katakana Chart</title>
-	<link rel="stylesheet" href="css/style.css">
-	<!--
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-	-->
-</head>
+		<title>Kana Flashcards</title>
+		
+		<!-- CSS -->
+		<link href="css/bootstrap.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
 
-<body>
-	<div id="main_container">
-		<h1>Hiragana &amp; Katakana Sounds</h1>
-		Click on the kana to hear a pronunciation. <a href="http://www.guidetojapanese.org/learn/grammar/hiragana">Source of these sound files</a>
-		<br /> <br />
+		<!-- AngularJS -->
+		<script src="js/angular-1.5.7.js"></script>
+		<script src="js/angular-route-1.5.7.js"></script>
+		<script src="js/flashcard.js"></script>
 
-		<div class="kana">
-			<!-- This div has all of the hiragana tables -->
-			<table id="hiragana-main">
-				<tr>
-					<th colspan="5">Hiragana</th>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('a')">&#12354;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('i')">&#12356;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('u')">&#12358;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('e')">&#12360;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('o')">&#12362;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ka')">&#12363;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ki')">&#12365;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ku')">&#12367;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ke')">&#12369;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ko')">&#12371;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('sa')">&#12373;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('shi')">&#12375;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('su')">&#12377;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('se')">&#12379;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('so')">&#12381;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ta')">&#12383;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('chi')">&#12385;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('tsu')">&#12388;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('te')">&#12390;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('to')">&#12392;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('na')">&#12394;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ni')">&#12395;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('nu')">&#12396;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ne')">&#12397;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('no')">&#12398;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ha')">&#12399;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('hi')">&#12402;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('fu')">&#12405;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('he')">&#12408;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ho')">&#12411;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ma')">&#12414;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('mi')">&#12415;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('mu')">&#12416;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('me')">&#12417;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('mo')">&#12418;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ya')">&#12420;</a></td>
-					<td>&nbsp;</td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('yu')">&#12422;</a></td>
-					<td>&nbsp;</td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('yo')">&#12424;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ra')">&#12425;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ri')">&#12426;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ru')">&#12427;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('re')">&#12428;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ro')">&#12429;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('wa')">&#12431;</a></td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('wo')">&#12434;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('n')">&#12435;</a></td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				</tr>
-			</table>
+		<!-- Bootstrap -->
+		<script src="js/jquery-2.2.4.js"></script>
+		<script src="js/bootstrap-3.3.7.js"></script>
+	</head>
 
-			<table id="hiragana-voiced">
-				<tr>
-					<th colspan="5">Hiragana - Voiced</th>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ga')">&#12364;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('gi')">&#12366;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('gu')">&#12368;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ge')">&#12370;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('go')">&#12372;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('za')">&#12374;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ji')">&#12376;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('zu')">&#12378;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ze')">&#12380;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('zo')">&#12382;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('da')">&#12384;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ji')">&#12386;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('dzu')">&#12389;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('de')">&#12391;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('do')">&#12393;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ba')">&#12400;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('bi')">&#12403;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('bu')">&#12406;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('be')">&#12409;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('bo')">&#12412;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('pa')">&#12401;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('pi')">&#12404;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('pu')">&#12407;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('pe')">&#12410;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('po')">&#12413;</a></td>
-				</tr>
-			</table>
+	<body>
+		<div class="container">
 
-			<table id="hiragana-combo">
-				<tr>
-					<th colspan="3">Hiragana - Combo</th>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('kya')">&#12365;&#12419;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('kyu')">&#12365;&#12421;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('kyo')">&#12365;&#12423;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('sha')">&#12375;&#12419;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('shu')">&#12375;&#12421;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('sho')">&#12375;&#12423;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('cha')">&#12385;&#12419;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('chu')">&#12385;&#12421;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('cho')">&#12385;&#12423;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('nya')">&#12395;&#12419;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('nyu')">&#12395;&#12421;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('nyo')">&#12395;&#12423;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('hya')">&#12402;&#12419;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('hyu')">&#12402;&#12421;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('hyo')">&#12402;&#12423;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('mya')">&#12415;&#12419;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('myu')">&#12415;&#12421;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('myo')">&#12415;&#12423;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('rya')">&#12426;&#12419;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ryu')">&#12426;&#12421;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ryo')">&#12426;&#12423;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('gya')">&#12366;&#12419;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('gyu')">&#12366;&#12421;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('gyo')">&#12366;&#12423;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('jya')">&#12376;&#12419;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('jyu')">&#12376;&#12421;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('jyo')">&#12376;&#12423;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('bya')">&#12403;&#12419;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('byu')">&#12403;&#12421;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('byo')">&#12403;&#12423;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('pya')">&#12404;&#12419;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('pyu')">&#12404;&#12421;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('pyo')">&#12404;&#12423;</a></td>
-				</tr>
-			</table>
+
+			<div class="header clearfix">
+				<nav>
+					<ul class="nav nav-pills pull-right">
+						<li role="presentation"><a href="#/">Home</a></li>
+						<li role="presentation"><a href="#/chart">Kana Chart</a></li>
+					</ul>
+				</nav>
+
+				<h3 class="text-muted">Kana Flashcards</h3>
+			</div>
+
+			<ng-view></ng-view>
+
 		</div>
-
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-
-		<div class="kana">
-			<!-- This div has all of the katakana tables -->
-			<table id="katakana-main">
-				<tr>
-					<th colspan="5">Katakana</th>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('a')">&#12450;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('i')">&#12452;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('u')">&#12454;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('e')">&#12456;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('o')">&#12458;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ka')">&#12459;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ki')">&#12461;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ku')">&#12463;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ke')">&#12465;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ko')">&#12467;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('sa')">&#12469;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('shi')">&#12471;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('su')">&#12473;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('se')">&#12475;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('so')">&#12477;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ta')">&#12479;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('chi')">&#12481;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('tsu')">&#12484;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('te')">&#12486;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('to')">&#12488;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('na')">&#12490;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ni')">&#12491;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('nu')">&#12492;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ne')">&#12493;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('no')">&#12494;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ha')">&#12495;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('hi')">&#12498;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('fu')">&#12501;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('he')">&#12504;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ho')">&#12507;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ma')">&#12510;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('mi')">&#12511;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('mu')">&#12512;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('me')">&#12513;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('mo')">&#12514;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ya')">&#12516;</a></td>
-					<td>&nbsp;</td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('yu')">&#12518;</a></td>
-					<td>&nbsp;</td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('yo')">&#12520;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ra')">&#12521;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ri')">&#12522;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ru')">&#12523;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('re')">&#12524;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ro')">&#12525;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('wa')">&#12527;</a></td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('wo')">&#12530;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('n')">&#12531;</a></td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-					<td>&nbsp;</td>
-				</tr>
-			</table>
-
-			<table id="katakana-voiced">
-				<tr>
-					<th colspan="5">Katakana - Voiced</th>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ga')">&#12460;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('gi')">&#12462;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('gu')">&#12464;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ge')">&#12466;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('go')">&#12468;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('za')">&#12470;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ji')">&#12472;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('zu')">&#12474;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ze')">&#12476;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('zo')">&#12478;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('da')">&#12480;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ji')">&#12482;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('dzu')">&#12485;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('de')">&#12487;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('do')">&#12489;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ba')">&#12496;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('bi')">&#12499;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('bu')">&#12502;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('be')">&#12505;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('bo')">&#12508;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('pa')">&#12497;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('pi')">&#12500;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('pu')">&#12503;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('pe')">&#12506;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('po')">&#12509;</a></td>
-				</tr>
-			</table>
-
-			<table id="katakana-combo">
-				<tr>
-					<th colspan="5">Katakana - Combo</th>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('kya')">&#12461;&#12515;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('kyu')">&#12461;&#12517;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('kyo')">&#12461;&#12519;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('sha')">&#12471;&#12515;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('shu')">&#12471;&#12517;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('sho')">&#12471;&#12519;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('cha')">&#12481;&#12515;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('chu')">&#12481;&#12517;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('cho')">&#12481;&#12519;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('nya')">&#12491;&#12515;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('nyu')">&#12491;&#12517;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('nyo')">&#12491;&#12519;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('hya')">&#12498;&#12515;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('hyu')">&#12498;&#12517;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('hyo')">&#12498;&#12519;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('mya')">&#12511;&#12515;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('myu')">&#12511;&#12517;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('myo')">&#12511;&#12519;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('rya')">&#12522;&#12515;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ryu')">&#12522;&#12517;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('ryo')">&#12522;&#12519;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('gya')">&#12462;&#12515;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('gyu')">&#12462;&#12517;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('gyo')">&#12462;&#12519;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('jya')">&#12472;&#12515;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('jyu')">&#12472;&#12517;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('jyo')">&#12472;&#12519;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('bya')">&#12499;&#12515;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('byu')">&#12499;&#12517;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('byo')">&#12499;&#12519;</a></td>
-				</tr>
-				<tr>
-					<td><a href="JavaScript:void(0)" onclick="playSound('pya')">&#12500;&#12515;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('pyu')">&#12500;&#12517;</a></td>
-					<td><a href="JavaScript:void(0)" onclick="playSound('pyo')">&#12500;&#12519;</a></td>
-				</tr>
-			</table>
-		</div>
-	</div>
-
-	<script type="text/javascript">
-		function playSound(letter) {
-			var obj = document.createElement("audio");
-			obj.src="sounds/" + letter + ".mp3";
-			obj.play();
-		};
-
-		/*
-		$('document').ready(function() {
-			alert("Document loaded.");
-		});
-		*/
-	</script>
-</body>
+	</body>
 
 
 </html>
