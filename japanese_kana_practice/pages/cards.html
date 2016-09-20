@@ -3,5 +3,8 @@
 		<h4>Yay Game Here</h4>
 		<p>{{ kanaChoice.selected }}</p>
 		<p>{{ selectionString }}</p>
+		<ul>
+			<li ng-repeat="kana in selectedKanaList" ng-bind-html="kana.char">{{ kana.char }}</li>
+		</ul>
 	</div>
 </div>
