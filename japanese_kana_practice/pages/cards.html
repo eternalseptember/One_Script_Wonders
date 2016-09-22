@@ -1,10 +1,8 @@
 <div class="row">
 	<div class="col-lg-12">
 		<h4>Yay Game Here</h4>
-		<p>{{ kanaChoice.selected }}</p>
-		<p>{{ difficulty.selected }}</p>
 		<ul>
-			<li ng-repeat="kana in selectedKanaList | filter: choiceFilter" ng-bind-html="kana.char">{{ kana.char }}</li>
+			<li ng-repeat="kana in kanaList | filter: choiceFilter" ng-bind-html="kana.char">{{ kana.char }}</li>
 		</ul>
 	</div>
 </div>

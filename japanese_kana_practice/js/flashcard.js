@@ -61,15 +61,16 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 		choicesService.difficulty = $scope.difficulty;
 	});
 
-	// might rename selectedKanaList
-	$scope.selectedKanaList = kanaChartService.kana_chart;
+	$scope.kanaList = kanaChartService.kana_chart;
 
 	$scope.choiceFilter = function(kana) {
-		if ($scope.kanaChoice.selected === 'Both') {
-			return kana;
-		}
-		else if (kana.kana === $scope.kanaChoice.selected) {
-			return kana;
+		kanaSelected = $scope.kanaChoice.selected;
+		if ((kanaSelected === 'Both') || (kana.kana === kanaSelected)) {
+			// check that the kana's type is in the $scope.difficulty.selected[option]
+			difficultySelected = $scope.difficulty.selected;
+			if (difficultySelected.hasOwnProperty(kana.type)) {
+				return kana;
+			}
 		}
 	};
 
