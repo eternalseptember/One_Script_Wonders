@@ -43,7 +43,7 @@ KanaFlash.controller('KanaController', ['$scope', '$location', 'choicesService',
 	});
 
 	$scope.isChecked = function() {
-		
+		// make sure at least one difficulty checkbox has been selected		
 	};
 
 	$scope.submit = function() {
@@ -79,10 +79,24 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 
 KanaFlash.controller('ChartsController', ['$scope', 'kanaChartService', function($scope, kanaChartService) {
 	$scope.kanaChart = kanaChartService.kana_chart;
+
+	$scope.basicHiraganaChart = kanaChartService.selectKanaType('Hiragana', 'Basic');
 }]);
 
 
 KanaFlash.service('choicesService', function() {
 	this.kanaChoice = {};
 	this.difficulty = {};
+});
+
+
+KanaFlash.directive('kanaTable', function() {
+	return {
+		restrict: 'E',
+		templateUrl: 'directives/kanaTable.html',
+		replace: true,
+		scope: {
+			
+		}
+	}
 });

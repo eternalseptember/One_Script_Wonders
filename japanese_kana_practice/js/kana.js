@@ -272,7 +272,20 @@ KanaFlash.service('kanaChartService', function() {
 		{sound: 'pya', char: '&#12500;&#12515;', kana: 'Katakana', type: 'Combo'},
 		{sound: 'pyu', char: '&#12500;&#12517;', kana: 'Katakana', type: 'Combo'},
 		{sound: 'pyo', char: '&#12500;&#12519;', kana: 'Katakana', type: 'Combo'},
+	];
 
+	this.selectKanaType = function(kanaChoice, typeChoice) {
+		var selectKanaList = [];
+		length = this.kana_chart.length;
 
-	]
+		for (i = 0; i < length; i++) {
+			kanaObject = this.kana_chart[i];
+
+			if ((kanaObject.kana === kanaChoice) && (kanaObject.type === typeChoice)) {
+				selectKanaList.push(kanaObject);
+			}
+		}
+
+		return selectKanaList;
+	};
 });
