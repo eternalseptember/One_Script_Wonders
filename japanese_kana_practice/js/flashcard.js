@@ -92,9 +92,19 @@ KanaFlash.controller('ChartsController', ['$scope', 'kanaChartService', function
 	};
 
 	basicHiraganaList = kanaChartService.selectKanaType('Hiragana', 'Basic');
-	$scope.hiraganaChart = createChart(basicHiraganaList, 5);
+	$scope.basicHiraganaChart = createChart(basicHiraganaList, 5);
 	basicKatakanaList = kanaChartService.selectKanaType('Katakana', 'Basic');
-	$scope.katakanaChart = createChart(basicKatakanaList, 5);
+	$scope.basicKatakanaChart = createChart(basicKatakanaList, 5);
+
+	voicedHiraganaList = kanaChartService.selectKanaType('Hiragana', 'Voiced');
+	$scope.voicedHiraganaChart = createChart(voicedHiraganaList, 5);
+	voicedKatakanaList = kanaChartService.selectKanaType('Katakana', 'Voiced');
+	$scope.voicedKatakanaChart = createChart(voicedKatakanaList, 5);
+
+	comboHiraganaList = kanaChartService.selectKanaType('Hiragana', 'Combo');
+	$scope.comboHiraganaChart = createChart(comboHiraganaList, 3);
+	comboKatakanaList = kanaChartService.selectKanaType('Katakana', 'Combo');
+	$scope.comboKatakanaChart = createChart(comboKatakanaList, 3);
 }]);
 
 

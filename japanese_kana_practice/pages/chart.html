@@ -1,9 +1,26 @@
 <div class="row">
 	<div class="col-lg-12">
+		<!-- Each div wraps around tables to be seen next to each other. -->
+		<!-- Basic charts -->
 		<div class="kana-tables">
-			<kana-table kana-chart="hiraganaChart" kana-choice="Hiragana" type-choice="Basic" col-size="5"></kana-table>
+			<kana-table kana-chart="basicHiraganaChart" kana-choice="Hiragana" type-choice="Basic" col-size="5"></kana-table>
 			&emsp;
-			<kana-table kana-chart="katakanaChart" kana-choice="Katakana" type-choice="Basic" col-size="5"></kana-table>
+			<kana-table kana-chart="basicKatakanaChart" kana-choice="Katakana" type-choice="Basic" col-size="5"></kana-table>
 		</div>
+		<br />
+		<!-- Voiced charts -->
+		<div class="kana-tables">
+			<kana-table kana-chart="voicedHiraganaChart" kana-choice="Hiragana" type-choice="Voiced" col-size="5"></kana-table>
+			&emsp;
+			<kana-table kana-chart="voicedKatakanaChart" kana-choice="Katakana" type-choice="Voiced" col-size="5"></kana-table>
+		</div>
+		<br />
+		<!-- Combo charts -->
+		<div class="kana-tables">
+			<kana-table kana-chart="comboHiraganaChart" kana-choice="Hiragana" type-choice="Combo" col-size="3"></kana-table>
+			&emsp;
+			<kana-table kana-chart="comboKatakanaChart" kana-choice="Katakana" type-choice="Combo" col-size="3"></kana-table>
+		</div>
+
 	</div>
 </div>
