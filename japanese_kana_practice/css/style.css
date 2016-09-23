@@ -62,19 +62,25 @@ h4 {
   display: inline-block;
 }
 
-.inlineCharts {
-  display: inline-block;
+.kana-tables {
+  text-align: center;
 }
 
 .kana-table {
   margin: 0 auto;
   font-size: xx-large;
+  display: inline-block;
 }
 
 .kana-table td {
   text-align: center;
   border: 1px solid black;
   padding: 2px 6px 2px 6px;
+}
+
+.kana-table th {
+  text-align: center;
+  font-size: x-large;
 }
 
 .kana-table td:hover {

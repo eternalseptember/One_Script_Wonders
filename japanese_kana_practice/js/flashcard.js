@@ -65,12 +65,12 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 
 	$scope.choiceFilter = function(kana) {
 		kanaSelected = $scope.kanaChoice.selected;
-		if ((kanaSelected === 'Both') || (kana.kana === kanaSelected)) {
-			// check that the kana's type is in the $scope.difficulty.selected[option]
-			difficultySelected = $scope.difficulty.selected;
-			if (difficultySelected.hasOwnProperty(kana.type)) {
-				// due to empty spaces in some rows, check to see that it has a sound
-				if (kana.sound !== '') {
+		// due to empty spaces in some rows, check to see that it has a sound
+		if (kana.sound !== '') {
+			if ((kanaSelected === 'Both') || (kana.kana === kanaSelected)) {
+				// check that the kana's type is in the $scope.difficulty.selected[option]
+				difficultySelected = $scope.difficulty.selected;
+				if (difficultySelected.hasOwnProperty(kana.type)) {
 					return kana;
 				}
 			}
