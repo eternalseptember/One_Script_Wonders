@@ -43,8 +43,11 @@ KanaFlash.service('kanaChartService', function() {
 		{sound: 'me', char: '&#12417;', kana: 'Hiragana', type: 'Basic'},
 		{sound: 'mo', char: '&#12418;', kana: 'Hiragana', type: 'Basic'},
 
+		// padding in this row
 		{sound: 'ya', char: '&#12420;', kana: 'Hiragana', type: 'Basic'},
+		{sound: '', char: '&nbsp;', kana:'Hiragana', type: 'Basic'},
 		{sound: 'yu', char: '&#12422;', kana: 'Hiragana', type: 'Basic'},
+		{sound: '', char: '&nbsp;', kana:'Hiragana', type: 'Basic'},
 		{sound: 'yo', char: '&#12424;', kana: 'Hiragana', type: 'Basic'},
 
 		{sound: 'ra', char: '&#12425;', kana: 'Hiragana', type: 'Basic'},
@@ -53,10 +56,19 @@ KanaFlash.service('kanaChartService', function() {
 		{sound: 're', char: '&#12428;', kana: 'Hiragana', type: 'Basic'},
 		{sound: 'ro', char: '&#12429;', kana: 'Hiragana', type: 'Basic'},
 
+		// padding in this row
 		{sound: 'wa', char: '&#12431;', kana: 'Hiragana', type: 'Basic'},
+		{sound: '', char: '&nbsp;', kana:'Hiragana', type: 'Basic'},
+		{sound: '', char: '&nbsp;', kana:'Hiragana', type: 'Basic'},
+		{sound: '', char: '&nbsp;', kana:'Hiragana', type: 'Basic'},
 		{sound: 'wo', char: '&#12434;', kana: 'Hiragana', type: 'Basic'},
 
+		// padding in this row
 		{sound: 'n', char: '&#12435;', kana: 'Hiragana', type: 'Basic'},
+		{sound: '', char: '&nbsp;', kana:'Hiragana', type: 'Basic'},
+		{sound: '', char: '&nbsp;', kana:'Hiragana', type: 'Basic'},
+		{sound: '', char: '&nbsp;', kana:'Hiragana', type: 'Basic'},
+		{sound: '', char: '&nbsp;', kana:'Hiragana', type: 'Basic'},
 
 
 		// Voiced Hiragana
@@ -180,8 +192,11 @@ KanaFlash.service('kanaChartService', function() {
 		{sound: 'me', char: '&#12513;', kana: 'Katakana', type: 'Basic'},
 		{sound: 'mo', char: '&#12514;', kana: 'Katakana', type: 'Basic'},
 
+		// padding in this row
 		{sound: 'ya', char: '&#12516;', kana: 'Katakana', type: 'Basic'},
+		{sound: '', char: '&nbsp;', kana:'Katakana', type: 'Basic'},
 		{sound: 'yu', char: '&#12518;', kana: 'Katakana', type: 'Basic'},
+		{sound: '', char: '&nbsp;', kana:'Katakana', type: 'Basic'},
 		{sound: 'yo', char: '&#12520;', kana: 'Katakana', type: 'Basic'},
 
 		{sound: 'ra', char: '&#12521;', kana: 'Katakana', type: 'Basic'},
@@ -190,10 +205,19 @@ KanaFlash.service('kanaChartService', function() {
 		{sound: 're', char: '&#12524;', kana: 'Katakana', type: 'Basic'},
 		{sound: 'ro', char: '&#12525;', kana: 'Katakana', type: 'Basic'},
 
+		// padding in this row
 		{sound: 'wa', char: '&#12527;', kana: 'Katakana', type: 'Basic'},
+		{sound: '', char: '&nbsp;', kana:'Katakana', type: 'Basic'},
+		{sound: '', char: '&nbsp;', kana:'Katakana', type: 'Basic'},
+		{sound: '', char: '&nbsp;', kana:'Katakana', type: 'Basic'},
 		{sound: 'wo', char: '&#12530;', kana: 'Katakana', type: 'Basic'},
 
+		// padding in this row
 		{sound: 'n', char: '&#12531;', kana: 'Katakana', type: 'Basic'},
+		{sound: '', char: '&nbsp;', kana:'Katakana', type: 'Basic'},
+		{sound: '', char: '&nbsp;', kana:'Katakana', type: 'Basic'},
+		{sound: '', char: '&nbsp;', kana:'Katakana', type: 'Basic'},
+		{sound: '', char: '&nbsp;', kana:'Katakana', type: 'Basic'},
 
 
 		// Voiced Katakana

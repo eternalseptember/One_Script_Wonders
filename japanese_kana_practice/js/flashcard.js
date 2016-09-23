@@ -69,7 +69,10 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 			// check that the kana's type is in the $scope.difficulty.selected[option]
 			difficultySelected = $scope.difficulty.selected;
 			if (difficultySelected.hasOwnProperty(kana.type)) {
-				return kana;
+				// due to empty spaces in some rows, check to see that it has a sound
+				if (kana.sound !== '') {
+					return kana;
+				}
 			}
 		}
 	};
@@ -78,9 +81,20 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 
 
 KanaFlash.controller('ChartsController', ['$scope', 'kanaChartService', function($scope, kanaChartService) {
-	$scope.kanaChart = kanaChartService.kana_chart;
+	createChart = function(kanaList, size) {
+		var kanaChart = [];
+		length = kanaList.length;
 
-	$scope.basicHiraganaChart = kanaChartService.selectKanaType('Hiragana', 'Basic');
+		for (var i = 0; i < length; i += size) {
+			kanaChart.push(kanaList.slice(i, i + size));
+		}
+		return kanaChart;
+	};
+
+	basicHiraganaList = kanaChartService.selectKanaType('Hiragana', 'Basic');
+	$scope.hiraganaChart = createChart(basicHiraganaList, 5);
+	basicKatakanaList = kanaChartService.selectKanaType('Katakana', 'Basic');
+	$scope.katakanaChart = createChart(basicKatakanaList, 5);
 }]);
 
 
@@ -96,7 +110,10 @@ KanaFlash.directive('kanaTable', function() {
 		templateUrl: 'directives/kanaTable.html',
 		replace: true,
 		scope: {
-			
+			kanaChart: "=",
+			kanaChoice: "@",
+			typeChoice: "@",
+			colSize: "@",
 		}
 	}
 });
