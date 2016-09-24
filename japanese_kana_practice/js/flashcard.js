@@ -28,7 +28,7 @@ KanaFlash.controller('KanaController', ['$scope', '$location', 'choicesService',
 		]
 	};
 
-	$scope.difficulty = {
+	$scope.typeChoice = {
 		selected: null,
 		options: [
 			'Basic',
@@ -37,13 +37,13 @@ KanaFlash.controller('KanaController', ['$scope', '$location', 'choicesService',
 		]
 	};
 
-	$scope.$watchCollection('[kanaChoice, difficulty]', function() {
-		choicesService.kanaChoice = $scope.kanaChoice;
-		choicesService.difficulty = $scope.difficulty;
+	$scope.$watchCollection('[kanaChoice.selected, typeChoice.selected]', function() {
+		choicesService.kanaChoice = $scope.kanaChoice.selected;
+		choicesService.typeChoice = $scope.typeChoice.selected;
 	});
 
 	$scope.isChecked = function() {
-		// make sure at least one difficulty checkbox has been selected		
+		// make sure at least one typeChoice checkbox has been selected		
 	};
 
 	$scope.submit = function() {
@@ -54,36 +54,40 @@ KanaFlash.controller('KanaController', ['$scope', '$location', 'choicesService',
 
 KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartService', function($scope, choicesService, kanaChartService) {
 	$scope.kanaChoice = choicesService.kanaChoice;
-	$scope.difficulty = choicesService.difficulty;
+	$scope.typeChoice = choicesService.typeChoice;
 
-	$scope.$watchCollection('[kanaChoice, difficulty]', function() {
-		choicesService.kanaChoice = $scope.kanaChoice;
-		choicesService.difficulty = $scope.difficulty;
-	});
+	var getCards = function(kanaChoice, typeChoice) {
+		var cardsList = [];
+		var fullKanaList = kanaChartService.kanaList;
+		var length = fullKanaList.length;
 
-	$scope.kanaList = kanaChartService.kana_chart;
+		for (var i = 0; i < length; i++) {
+			var kanaObject = fullKanaList[i];
 
-	$scope.choiceFilter = function(kana) {
-		kanaSelected = $scope.kanaChoice.selected;
-		// due to empty spaces in some rows, check to see that it has a sound
-		if (kana.sound !== '') {
-			if ((kanaSelected === 'Both') || (kana.kana === kanaSelected)) {
-				// check that the kana's type is in the $scope.difficulty.selected[option]
-				difficultySelected = $scope.difficulty.selected;
-				if (difficultySelected.hasOwnProperty(kana.type)) {
-					return kana;
+			// Excludes empty placeholder sounds
+			if (kanaObject.sound === '') {
+				continue;
+			}
+
+			if ((kanaChoice === 'Both') || (kanaObject.kana === kanaChoice)) {
+				// Check that the kana's type is in typeChoice
+				if (typeChoice.hasOwnProperty(kanaObject.type)) {
+					cardsList.push(kanaObject);					
 				}
 			}
 		}
+		return cardsList;
 	};
+
+	$scope.cardsList = getCards(choicesService.kanaChoice, choicesService.typeChoice);
 
 }]);
 
 
 KanaFlash.controller('ChartsController', ['$scope', 'kanaChartService', function($scope, kanaChartService) {
-	createChart = function(kanaList, size) {
+	var createChart = function(kanaList, size) {
 		var kanaChart = [];
-		length = kanaList.length;
+		var length = kanaList.length;
 
 		for (var i = 0; i < length; i += size) {
 			kanaChart.push(kanaList.slice(i, i + size));
@@ -91,26 +95,26 @@ KanaFlash.controller('ChartsController', ['$scope', 'kanaChartService', function
 		return kanaChart;
 	};
 
-	basicHiraganaList = kanaChartService.selectKanaType('Hiragana', 'Basic');
+	var basicHiraganaList = kanaChartService.selectKanaType('Hiragana', 'Basic');
 	$scope.basicHiraganaChart = createChart(basicHiraganaList, 5);
-	basicKatakanaList = kanaChartService.selectKanaType('Katakana', 'Basic');
+	var basicKatakanaList = kanaChartService.selectKanaType('Katakana', 'Basic');
 	$scope.basicKatakanaChart = createChart(basicKatakanaList, 5);
 
-	voicedHiraganaList = kanaChartService.selectKanaType('Hiragana', 'Voiced');
+	var voicedHiraganaList = kanaChartService.selectKanaType('Hiragana', 'Voiced');
 	$scope.voicedHiraganaChart = createChart(voicedHiraganaList, 5);
-	voicedKatakanaList = kanaChartService.selectKanaType('Katakana', 'Voiced');
+	var voicedKatakanaList = kanaChartService.selectKanaType('Katakana', 'Voiced');
 	$scope.voicedKatakanaChart = createChart(voicedKatakanaList, 5);
 
-	comboHiraganaList = kanaChartService.selectKanaType('Hiragana', 'Combo');
+	var comboHiraganaList = kanaChartService.selectKanaType('Hiragana', 'Combo');
 	$scope.comboHiraganaChart = createChart(comboHiraganaList, 3);
-	comboKatakanaList = kanaChartService.selectKanaType('Katakana', 'Combo');
+	var comboKatakanaList = kanaChartService.selectKanaType('Katakana', 'Combo');
 	$scope.comboKatakanaChart = createChart(comboKatakanaList, 3);
 }]);
 
 
 KanaFlash.service('choicesService', function() {
 	this.kanaChoice = {};
-	this.difficulty = {};
+	this.typeChoice = {};
 });
 
 

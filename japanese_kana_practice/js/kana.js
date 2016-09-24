@@ -1,5 +1,5 @@
 KanaFlash.service('kanaChartService', function() {
-	this.kana_chart = [
+	this.kanaList = [
 		// Basic Hiragana
 		{sound: 'a', char: '&#12354;', kana: 'Hiragana', type: 'Basic'},
 		{sound: 'i', char: '&#12356;', kana: 'Hiragana', type: 'Basic'},
@@ -300,16 +300,15 @@ KanaFlash.service('kanaChartService', function() {
 
 	this.selectKanaType = function(kanaChoice, typeChoice) {
 		var selectKanaList = [];
-		length = this.kana_chart.length;
+		var length = this.kanaList.length;
 
-		for (i = 0; i < length; i++) {
-			kanaObject = this.kana_chart[i];
+		for (var i = 0; i < length; i++) {
+			var kanaObject = this.kanaList[i];
 
 			if ((kanaObject.kana === kanaChoice) && (kanaObject.type === typeChoice)) {
 				selectKanaList.push(kanaObject);
 			}
 		}
-
 		return selectKanaList;
 	};
 });
