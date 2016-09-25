@@ -42,9 +42,16 @@ KanaFlash.controller('KanaController', ['$scope', '$location', 'choicesService',
 		choicesService.typeChoice = $scope.typeChoice.selected;
 	});
 
-	$scope.isChecked = function() {
-		// make sure at least one typeChoice checkbox has been selected		
-	};
+
+
+	$scope.isChecked = false;
+	$scope.$watch('typeChoice.selected', function(selected) {
+		$scope.isChecked = false;
+		angular.forEach(selected, function(isChecked) {
+			if (isChecked) $scope.isChecked = true;
+		});
+	}, true);
+
 
 	$scope.submit = function() {
 		$location.path("/cards");
@@ -65,9 +72,7 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 			var kanaObject = fullKanaList[i];
 
 			// Excludes empty placeholder sounds
-			if (kanaObject.sound === '') {
-				continue;
-			}
+			if (kanaObject.sound === '') continue;
 
 			if ((kanaChoice === 'Both') || (kanaObject.kana === kanaChoice)) {
 				// Check that the kana's type is in typeChoice
@@ -133,7 +138,8 @@ KanaFlash.directive('kanaTable', function() {
 
 KanaFlash.directive('playSound', function() {
 	return {
-		restrict: 'EA',
+		restrict: 'E',
+		replace: true,
 		scope: {
 			kana: "=",
 		},
