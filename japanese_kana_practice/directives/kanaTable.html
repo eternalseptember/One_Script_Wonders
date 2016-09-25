@@ -4,6 +4,8 @@
 	</tr>
 <!-- REPEAT KANA HERE -->
 	<tr ng-repeat="row in kanaChart">
-		<td ng-repeat="kana in row" ng-bind-html="kana.char">{{ kana.char }}</td>
+		<td ng-repeat="kana in row">
+			<play-sound kana="kana" ng-if="!!kana.sound">True</play-sound>
+		</td>
 	</tr>
 </table>

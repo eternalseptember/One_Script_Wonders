@@ -71,7 +71,7 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 
 			if ((kanaChoice === 'Both') || (kanaObject.kana === kanaChoice)) {
 				// Check that the kana's type is in typeChoice
-				if (typeChoice.hasOwnProperty(kanaObject.type)) {
+				if ((typeChoice.hasOwnProperty(kanaObject.type)) && (typeChoice[kanaObject.type])) {
 					cardsList.push(kanaObject);					
 				}
 			}
@@ -80,7 +80,6 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 	};
 
 	$scope.cardsList = getCards(choicesService.kanaChoice, choicesService.typeChoice);
-
 }]);
 
 
@@ -129,5 +128,23 @@ KanaFlash.directive('kanaTable', function() {
 			typeChoice: "@",
 			colSize: "@",
 		}
+	}
+});
+
+KanaFlash.directive('playSound', function() {
+	return {
+		restrict: 'EA',
+		scope: {
+			kana: "=",
+		},
+		link: function(scope, element, attrs) {
+			scope.playSound = function() {
+				var obj = document.createElement("audio");
+				obj.src="sounds/" + scope.kana.sound + ".mp3";
+				obj.play();
+			}
+		},
+		template: 
+			'<a href="javascript:void(0)" ng-click="playSound()" ng-bind-html="kana.char">{{ kana.char }}</a>'
 	}
 });
