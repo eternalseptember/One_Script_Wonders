@@ -18,6 +18,14 @@ KanaFlash.config(function($routeProvider) {
 });
 
 
+KanaFlash.controller('HeaderController', ['$scope', '$location', function($scope, $location) {
+	$scope.isActive = function(viewLocation) {
+		//return viewLocation === $location.path();
+		return $location.path().indexOf(viewLocation) == 0;
+	}
+}]);
+
+
 KanaFlash.controller('KanaController', ['$scope', '$location', 'choicesService', function($scope, $location, choicesService) {
 	$scope.kanaChoice = {
 		selected: null,
@@ -42,8 +50,7 @@ KanaFlash.controller('KanaController', ['$scope', '$location', 'choicesService',
 		choicesService.typeChoice = $scope.typeChoice.selected;
 	});
 
-
-
+	// For validating that at least one checkbox was checked
 	$scope.isChecked = false;
 	$scope.$watch('typeChoice.selected', function(selected) {
 		$scope.isChecked = false;
@@ -51,7 +58,6 @@ KanaFlash.controller('KanaController', ['$scope', '$location', 'choicesService',
 			if (isChecked) $scope.isChecked = true;
 		});
 	}, true);
-
 
 	$scope.submit = function() {
 		$location.path("/cards");
