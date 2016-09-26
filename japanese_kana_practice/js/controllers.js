@@ -65,9 +65,12 @@ KanaFlash.controller('KanaController', ['$scope', '$location', 'choicesService',
 }]);
 
 
-KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartService', function($scope, choicesService, kanaChartService) {
-	$scope.numOfCards = choicesService.numOfCards;
+KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartService', 'cardsService', function($scope, choicesService, kanaChartService, cardsService) {
 	$scope.cardsList = getCards(choicesService.kanaChoice, choicesService.typeChoice);
+	
+	$scope.$watch('cardsList', function() {
+		cardsService.listOfCards = $scope.cardsList;
+	}, true);
 
 	function getCards(kanaChoice, typeChoice) {
 		var cardsList = [];
@@ -90,6 +93,7 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 		return cardsList;
 	};
 
+	$scope.numOfCards = choicesService.numOfCards;
 	
 }]);
 

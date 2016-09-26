@@ -34,6 +34,11 @@ KanaFlash.service('choicesService', function() {
 });
 
 
+KanaFlash.service('cardsService', function() {
+	this.listOfCards = {};
+})
+
+
 KanaFlash.directive('kanaTable', function() {
 	return {
 		restrict: 'E',
@@ -65,5 +70,17 @@ KanaFlash.directive('playSound', function() {
 		},
 		template: 
 			'<a href="javascript:void(0)" ng-click="playSound()" ng-bind-html="kana.char">{{ kana.char }}</a>'
+	}
+});
+
+
+KanaFlash.directive('card', function() {
+	return {
+		restrict: 'E',
+		templateUrl: 'directives/card.html',
+		replace: true,
+		scope: {
+			kana: "=",
+		}
 	}
 });
