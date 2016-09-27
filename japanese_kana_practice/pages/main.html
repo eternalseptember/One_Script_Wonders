@@ -16,7 +16,7 @@
 					&emsp; &emsp;
 					<div class="form-group kana-options">
 						<div ng-repeat="option in typeChoice.options">
-							<input type="checkbox" ng-model="typeChoice.selected[option]" value="{{ option }}" ng-required="!isChecked" /> {{ option }}<br />
+							<input type="checkbox" ng-model="typeChoice.selected[option]" value="{{ option }}" ng-required="!maxNumOfCards > 0" /> {{ option }}<br />
 						</div>
 					</div>
 					<br />

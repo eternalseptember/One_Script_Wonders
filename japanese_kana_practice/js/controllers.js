@@ -25,15 +25,6 @@ KanaFlash.controller('KanaController', ['$scope', '$location', 'choicesService',
 		choicesService.numOfCards = $scope.numOfCards;
 		choicesService.maxNumOfCards = $scope.kanaMult * $scope.maxNumOfCards;
 	});
-
-	// For validating that at least one checkbox was checked
-	$scope.isChecked = false;
-	$scope.$watch('typeChoice.selected', function(newSelection) {
-		$scope.isChecked = false;
-		angular.forEach(newSelection, function(isChecked) {
-			if (isChecked) $scope.isChecked = true;
-		});
-	}, true);
 	
 	// Calculates the maximum number of cards
 	$scope.$watch('kanaChoice.selected', function(newValue) {
