@@ -31,6 +31,7 @@ KanaFlash.service('choicesService', function() {
 	this.kanaChoice = {};
 	this.typeChoice = {};
 	this.numOfCards = 5;
+	this.maxNumOfCards = 0;
 });
 
 

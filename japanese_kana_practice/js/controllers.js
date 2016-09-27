@@ -19,10 +19,11 @@ KanaFlash.controller('KanaController', ['$scope', '$location', 'choicesService',
 
 	$scope.numOfCards = choicesService.numOfCards;
 
-	$scope.$watchCollection('[kanaChoice.selected, typeChoice.selected, numOfCards]', function() {
+	$scope.$watchCollection('[kanaChoice.selected, typeChoice.selected, numOfCards, kanaMult, maxNumOfCards]', function() {
 		choicesService.kanaChoice = $scope.kanaChoice.selected;
 		choicesService.typeChoice = $scope.typeChoice.selected;
 		choicesService.numOfCards = $scope.numOfCards;
+		choicesService.maxNumOfCards = $scope.kanaMult * $scope.maxNumOfCards;
 	});
 
 	// For validating that at least one checkbox was checked
@@ -73,6 +74,7 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 	$scope.kanaChoice = choicesService.kanaChoice;
 	$scope.typeChoice = choicesService.typeChoice;
 	$scope.numOfCards = choicesService.numOfCards;
+	$scope.maxNumOfCards = choicesService.maxNumOfCards;
 
 	$scope.cardsList = showCards();
 
@@ -111,9 +113,24 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 				}
 			}
 		}
+		cardsList = shuffle(cardsList);
 		return cardsList;
 	};
 	
+	function shuffle(listOfCards) {
+		let counter = listOfCards.length;
+
+		while (counter > 0) {
+			let index = Math.floor(Math.random() * counter);
+			counter--;
+
+			let temp = listOfCards[counter];
+			listOfCards[counter] = listOfCards[index];
+			listOfCards[index] = temp;
+		}
+		return listOfCards;
+	}
+
 }]);
 
 
