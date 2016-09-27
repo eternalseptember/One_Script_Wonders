@@ -114,6 +114,7 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 			}
 		}
 		cardsList = shuffle(cardsList);
+		cardsList = dealCards(cardsList, choicesService.numOfCards, choicesService.maxNumOfCards);
 		return cardsList;
 	};
 	
@@ -129,7 +130,12 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 			listOfCards[index] = temp;
 		}
 		return listOfCards;
-	}
+	};
+
+	function dealCards(listOfCards, numOfCards, maxNumOfCards) {
+		var howMany = (numOfCards <= maxNumOfCards) ? numOfCards : maxNumOfCards;
+		return listOfCards.slice(0, howMany);
+	};
 
 }]);
 
