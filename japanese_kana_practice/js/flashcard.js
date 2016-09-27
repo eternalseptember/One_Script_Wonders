@@ -34,11 +34,6 @@ KanaFlash.service('choicesService', function() {
 });
 
 
-KanaFlash.service('cardsService', function() {
-	this.listOfCards = {};
-})
-
-
 KanaFlash.directive('kanaTable', function() {
 	return {
 		restrict: 'E',
