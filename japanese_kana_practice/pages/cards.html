@@ -4,8 +4,12 @@
 
 			<h4>Yay Game Here</h4>
 			<p>Additional Instructions Here</p>
-			
-			<div ng-repeat="kana in cardsList">
+
+			<div ng-show="cardsList.length <= 0">
+				<p>No deck has been created yet. Click <a href="#/">here</a> to start!</p>
+			</div>
+
+			<div ng-show="cardsList" ng-repeat="kana in cardsList">
 				<card kana="kana"></card>
 				<br />
 			</div>

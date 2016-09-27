@@ -71,14 +71,10 @@ KanaFlash.controller('KanaController', ['$scope', '$location', 'choicesService',
 
 
 KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartService', function($scope, choicesService, kanaChartService) {
-	$scope.kanaChoice = choicesService.kanaChoice;
-	$scope.typeChoice = choicesService.typeChoice;
-	$scope.numOfCards = choicesService.numOfCards;
-	$scope.maxNumOfCards = choicesService.maxNumOfCards;
 
 	$scope.cardsList = showCards();
 
-
+	// should probably call it "initialize" or something
 	function showCards() {
 		var cards = [];
 
@@ -86,8 +82,9 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 		// It checks the length to be greater than 2 because cards is stored as a string,
 		// and an empty array would be '[]', which is two characters long.
 		var savedCards = localStorage.getItem('cards');
-		if ((savedCards !== null) && (savedCards.length > 2)) 
+		if ((savedCards !== null) && (savedCards.length > 2)) {
 			cards = JSON.parse(savedCards);
+		}
 		else {
 			cards = getCards(choicesService.kanaChoice, choicesService.typeChoice);
 			localStorage.setItem('cards', JSON.stringify(cards));
