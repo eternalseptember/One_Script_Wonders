@@ -65,23 +65,27 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 
 	$scope.cardsList = getCards();
 	$scope.cardsIndex = 0;
-	$scope.maxNumOfCards = getCount();
+	$scope.maxNumOfCards = $scope.cardsList.length;
 
 	$scope.reviewLater = function(card) {
-		// Add card to the "review later" deck if it is not a duplicate
 		console.log('Review later: ' + JSON.stringify(card));
+
+		//if (!isDuplicate(card))
+			// Add to review deck
+		
 		$scope.nextCard();
 	};
 
 	$scope.nextCard = function() {
 		console.log('Next card');
+
 		$scope.cardsIndex += 1;
 		// loop around for testing purposes
-		if ($scope.cardsIndex >= ($scope.cardsList.length - 1))
+		if ($scope.cardsIndex >= ($scope.cardsList.length))
 			$scope.cardsIndex = 0;
 	};
 
-	function checkForDuplicate() {
+	function isDuplicate(card) {
 		//
 	};
 
@@ -149,6 +153,45 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 		var maxNumOfCards = choicesService.maxNumOfCards;
 		return (numOfCards <= maxNumOfCards) ? numOfCards : maxNumOfCards;
 	};
+
+}]);
+
+
+KanaFlash.controller('ReviewDeckController', ['$scope', function($scope) {
+	$scope.cardsList = getCards();
+	$scope.cardsIndex = 0;
+	$scope.maxNumOfCards = $scope.cardsList.length;
+
+	$scope.removeCard = function(card) {
+		console.log('Remove: ' + JSON.stringify(card));
+
+		// stuff here
+
+		$scope.nextCard();
+	};
+
+	$scope.nextCard = function() {
+		console.log('Next card');
+
+		$scope.cardsIndex += 1;
+		// loop around for testing purposes
+		if ($scope.cardsIndex >= ($scope.cardsList.length))
+			$scope.cardsIndex = 0;
+	};
+
+	function getCards() {
+		var cards = [];
+
+		// Checks to see if there's already a deck of cards saved in localStorage.
+		// It checks the length to be greater than 2 because cards is stored as a string,
+		// and an empty array would be '[]', which is two characters long.
+		var savedCards = localStorage.getItem('cards');
+		if ((savedCards !== null) && (savedCards.length > 2)) {
+			cards = JSON.parse(savedCards);
+		}
+		return cards;
+	};
+
 
 }]);
 

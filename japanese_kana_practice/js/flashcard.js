@@ -11,6 +11,10 @@ KanaFlash.config(function($routeProvider) {
 			templateUrl: 'pages/cards.html',
 			controller: 'CardsController'
 		})
+		.when('/review', {
+			templateUrl: 'pages/review.html',
+			controller: 'ReviewDeckController'
+		})
 		.when('/chart', {
 			templateUrl: 'pages/chart.html',
 			controller: 'ChartsController'
