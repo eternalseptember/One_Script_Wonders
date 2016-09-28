@@ -104,3 +104,7 @@ h3 a:hover {
   width: 200px;
   line-height: 175px; /* Vertical center if equal to height. */
 }
+
+.card a {
+  text-decoration: none
+}

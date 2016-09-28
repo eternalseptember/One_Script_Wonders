@@ -63,10 +63,29 @@ KanaFlash.controller('KanaController', ['$scope', '$location', 'choicesService',
 
 KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartService', function($scope, choicesService, kanaChartService) {
 
-	$scope.cardsList = showCards();
+	$scope.cardsList = getCards();
+	$scope.cardsIndex = 0;
+	$scope.maxNumOfCards = getCount();
 
-	// should probably call it "initialize" or something
-	function showCards() {
+	$scope.reviewLater = function(card) {
+		// Add card to the "review later" deck if it is not a duplicate
+		console.log('Review later: ' + JSON.stringify(card));
+		$scope.nextCard();
+	};
+
+	$scope.nextCard = function() {
+		console.log('Next card');
+		$scope.cardsIndex += 1;
+		// loop around for testing purposes
+		if ($scope.cardsIndex >= ($scope.cardsList.length - 1))
+			$scope.cardsIndex = 0;
+	};
+
+	function checkForDuplicate() {
+		//
+	};
+
+	function getCards() {
 		var cards = [];
 
 		// Checks to see if there's already a deck of cards saved in localStorage.
@@ -77,13 +96,13 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 			cards = JSON.parse(savedCards);
 		}
 		else {
-			cards = getCards(choicesService.kanaChoice, choicesService.typeChoice);
+			cards = getNewCards(choicesService.kanaChoice, choicesService.typeChoice);
 			localStorage.setItem('cards', JSON.stringify(cards));
 		}
 		return cards;
 	};
 
-	function getCards(kanaChoice, typeChoice) {
+	function getNewCards(kanaChoice, typeChoice) {
 		var cardsList = [];
 		var fullKanaList = kanaChartService.kanaList;
 		var length = fullKanaList.length;
@@ -102,7 +121,7 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 			}
 		}
 		cardsList = shuffle(cardsList);
-		cardsList = dealCards(cardsList, choicesService.numOfCards, choicesService.maxNumOfCards);
+		cardsList = dealCards(cardsList);
 		return cardsList;
 	};
 	
@@ -120,16 +139,36 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 		return listOfCards;
 	};
 
-	function dealCards(listOfCards, numOfCards, maxNumOfCards) {
-		var howMany = (numOfCards <= maxNumOfCards) ? numOfCards : maxNumOfCards;
+	function dealCards(listOfCards) {
+		var howMany = getCount();
 		return listOfCards.slice(0, howMany);
+	};
+
+	function getCount() {
+		var numOfCards = choicesService.numOfCards;
+		var maxNumOfCards = choicesService.maxNumOfCards;
+		return (numOfCards <= maxNumOfCards) ? numOfCards : maxNumOfCards;
 	};
 
 }]);
 
 
 KanaFlash.controller('ChartsController', ['$scope', 'kanaChartService', function($scope, kanaChartService) {
-	var createChart = function(kanaList, size) {
+	var basicHiraganaList = kanaChartService.selectKanaType('Hiragana', 'Basic');
+	var basicKatakanaList = kanaChartService.selectKanaType('Katakana', 'Basic');
+	var voicedHiraganaList = kanaChartService.selectKanaType('Hiragana', 'Voiced');
+	var voicedKatakanaList = kanaChartService.selectKanaType('Katakana', 'Voiced');
+	var comboHiraganaList = kanaChartService.selectKanaType('Hiragana', 'Combo');
+	var comboKatakanaList = kanaChartService.selectKanaType('Katakana', 'Combo');
+
+	$scope.basicHiraganaChart = createChart(basicHiraganaList, 5);
+	$scope.basicKatakanaChart = createChart(basicKatakanaList, 5);
+	$scope.voicedHiraganaChart = createChart(voicedHiraganaList, 5);
+	$scope.voicedKatakanaChart = createChart(voicedKatakanaList, 5);
+	$scope.comboHiraganaChart = createChart(comboHiraganaList, 3);
+	$scope.comboKatakanaChart = createChart(comboKatakanaList, 3);
+
+	function createChart(kanaList, size) {
 		var kanaChart = [];
 		var length = kanaList.length;
 
@@ -139,18 +178,4 @@ KanaFlash.controller('ChartsController', ['$scope', 'kanaChartService', function
 		return kanaChart;
 	};
 
-	var basicHiraganaList = kanaChartService.selectKanaType('Hiragana', 'Basic');
-	$scope.basicHiraganaChart = createChart(basicHiraganaList, 5);
-	var basicKatakanaList = kanaChartService.selectKanaType('Katakana', 'Basic');
-	$scope.basicKatakanaChart = createChart(basicKatakanaList, 5);
-
-	var voicedHiraganaList = kanaChartService.selectKanaType('Hiragana', 'Voiced');
-	$scope.voicedHiraganaChart = createChart(voicedHiraganaList, 5);
-	var voicedKatakanaList = kanaChartService.selectKanaType('Katakana', 'Voiced');
-	$scope.voicedKatakanaChart = createChart(voicedKatakanaList, 5);
-
-	var comboHiraganaList = kanaChartService.selectKanaType('Hiragana', 'Combo');
-	$scope.comboHiraganaChart = createChart(comboHiraganaList, 3);
-	var comboKatakanaList = kanaChartService.selectKanaType('Katakana', 'Combo');
-	$scope.comboKatakanaChart = createChart(comboKatakanaList, 3);
 }]);

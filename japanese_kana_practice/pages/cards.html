@@ -2,16 +2,23 @@
 	<div class="col-lg-12">
 		<div class="centered-text">
 
-			<h4>Yay Game Here</h4>
-			<p>Additional Instructions Here</p>
+			<h4>Yay Flashcards!</h4>
+			<p>Click on the kana to hear the pronounciation. If you guessed correctly, click on the green button to go to the next card. If you need to review the card again, click on the yellow "Review Later" button.</p>
 
+			<br /><br />
 			<div ng-show="cardsList.length <= 0">
 				<p>No deck has been created yet. Click <a href="#/">here</a> to start!</p>
 			</div>
 
+			<!-- Show only one card instead -->
 			<div ng-show="cardsList" ng-repeat="kana in cardsList">
-				<card kana="kana"></card>
-				<br />
+					<div ng-if="cardsIndex == $index">
+					<card kana="kana"></card>
+					<br /> 
+					<!-- Buttons -->
+					<button type="button" class="btn btn-warning" ng-click="reviewLater(kana)">Review later</button>
+					<button type="button" class="btn btn-success" ng-click="nextCard()">Next card</button>
+					</div>
 			</div>
 
 		</div>
