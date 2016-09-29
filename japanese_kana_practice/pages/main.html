@@ -1,44 +1,41 @@
 <div class="row">
-	<div class="col-lg-12">
-		<div class="centered-text">
+	<div class="col-lg-12 centered-text">
 
+		<h4>New Deck Settings</h4>
+		<p>Please choose from the following options to create a new study deck.</p>
 
-			<h4>New Deck Settings</h4>
-			<p>Please choose from the following options to create a new study deck.</p>
+		<div class="options-form">
+			<form name="optionsForm" ng-submit="submit()">
 
-			<div class="options-form">
-				<form name="optionsForm" ng-submit="submit()">
-
-					<div class="form-group kana-options">
-						<div ng-repeat="option in kanaChoice.options">
-							<input type="radio" ng-model="kanaChoice.selected" value="{{ option }}" name="kanaChoice" required /> {{ option }} <br />
-						</div>
+				<div class="form-group kana-options">
+					<div ng-repeat="option in kanaChoice.options">
+						<input type="radio" ng-model="kanaChoice.selected" value="{{ option }}" name="kanaChoice" required /> {{ option }} <br />
 					</div>
-					&emsp; &emsp;
-					<div class="form-group kana-options">
-						<div ng-repeat="option in typeChoice.options">
-							<input type="checkbox" ng-model="typeChoice.selected[option]" value="{{ option }}" ng-required="!maxNumOfCards > 0" /> {{ option }}<br />
-						</div>
+				</div>
+				&emsp; &emsp;
+				<div class="form-group kana-options">
+					<div ng-repeat="option in typeChoice.options">
+						<input type="checkbox" ng-model="typeChoice.selected[option]" value="{{ option }}" ng-required="!maxNumOfCards > 0" /> {{ option }}<br />
 					</div>
-					<br />
-					<p>How many cards to show? The maximum is {{ kanaMult }} x {{ maxNumOfCards }} = {{ kanaMult * maxNumOfCards }}.</p>
-					<input type="number" ng-model="numOfCards" /><br /><br />
-					<input type="submit" class="btn btn-primary" value="Start" />
+				</div>
+				<br />
+				<p>How many cards to show? The maximum is {{ kanaMult }} x {{ maxNumOfCards }} = {{ kanaMult * maxNumOfCards }}.</p>
+				<input type="number" ng-model="numOfCards" /><br /><br />
+				<input type="submit" class="btn btn-primary" value="Start" />
 
-				</form>
-				<!-- 
-				<p>optionsForm.$valid: {{ optionsForm.$valid }}</p>
-				<p>{{ typeChoice.selected }}</p>
-				-->
-			</div>
-
-			<br /><br /><br />
-			<h4>Review Deck Settings</h4>
-			<div class="deck-settings">
-				<p>Would you like to delete the review deck?</p>
-				<button type="button" class="btn btn-danger" ng-click="deleteReviewDeck()">Delete Review Deck</button>
-			</div>
-		
+			</form>
+			<!-- 
+			<p>optionsForm.$valid: {{ optionsForm.$valid }}</p>
+			<p>{{ typeChoice.selected }}</p>
+			-->
 		</div>
+
+		<br /><br /><br />
+		<h4>Review Deck Settings</h4>
+		<div class="deck-settings">
+			<p>Would you like to delete the review deck?</p>
+			<button type="button" class="btn btn-danger" ng-click="deleteReviewDeck()">Delete Review Deck</button>
+		</div>
+		
 	</div>
 </div>
