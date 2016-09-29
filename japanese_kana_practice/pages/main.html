@@ -3,7 +3,8 @@
 		<div class="centered-text">
 
 
-			<h4>Flashcard Settings</h4>
+			<h4>New Deck Settings</h4>
+			<p>Please choose from the following options to create a new study deck.</p>
 
 			<div class="options-form">
 				<form name="optionsForm" ng-submit="submit()">
@@ -31,6 +32,12 @@
 				-->
 			</div>
 
+			<br /><br /><br />
+			<h4>Review Deck Settings</h4>
+			<div class="deck-settings">
+				<p>Would you like to delete the review deck?</p>
+				<button type="button" class="btn btn-danger" ng-click="deleteReviewDeck()">Delete Review Deck</button>
+			</div>
 		
 		</div>
 	</div>

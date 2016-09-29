@@ -58,6 +58,10 @@ KanaFlash.controller('KanaController', ['$scope', '$location', 'choicesService',
 		// Goes to cards page
 		$location.path("/cards");
 	};
+
+	$scope.deleteReviewDeck = function() {
+		localStorage.removeItem('reviewDeck');
+	};
 }]);
 
 
@@ -69,19 +73,18 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 	$scope.reviewDeck = getReviewDeck();
 
 	$scope.reviewLater = function(card) {
-		console.log('Review later: ' + JSON.stringify(card));
-
 		if (!isDuplicate(card)) {
+			console.log('Not a duplicate. Adding: ' + JSON.stringify(card));
 			$scope.reviewDeck.push(card);
 			localStorage.setItem('reviewDeck', JSON.stringify($scope.reviewDeck));
 		}
+		else
+			console.log('Duplicate: ' + card.sound + ' ' + card.kana);
 		
 		$scope.nextCard();
 	};
 
 	$scope.nextCard = function() {
-		console.log('Next card');
-
 		$scope.cardsIndex += 1;
 		// loop around for testing purposes
 		if ($scope.cardsIndex >= ($scope.cardsList.length))
@@ -91,6 +94,9 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 	function isDuplicate(card) {
 		// is the card in the reviewDeck already?
 		// kana.char is unique
+		return $scope.reviewDeck.some(function(reviewCard) {
+			return reviewCard.char === card.char;
+		});
 	}
 
 	function getCards() {
@@ -184,8 +190,6 @@ KanaFlash.controller('ReviewDeckController', ['$scope', function($scope) {
 	};
 
 	$scope.nextCard = function() {
-		console.log('Next card');
-
 		$scope.cardsIndex += 1;
 		// loop around for testing purposes
 		if ($scope.cardsIndex >= ($scope.cardsList.length))

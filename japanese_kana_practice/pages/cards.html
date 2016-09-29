@@ -3,7 +3,8 @@
 		<div class="centered-text">
 
 			<h4>Yay Flashcards!</h4>
-			<p>Click on the kana to hear the pronounciation. If you guessed correctly, click on the green button to go to the next card. If you need to review the card again, click on the yellow "Review Later" button.</p>
+			<p>Click on the kana to hear the pronounciation.</p>
+			<p>If you guessed correctly, click on the <span class="label label-success">Next Card</span> button to go to the next card. If you need to review the card again, click on the <span class="label label-warning">Review Later</span> button; this will add the card to the "Review Deck", which can be studied <a href="#/review">here</a>.</p>
 
 			<br /><br />
 			<div ng-show="maxNumOfCards <= 0">
@@ -15,8 +16,8 @@
 						<p>Progress: {{ cardsIndex + 1 }} / {{ maxNumOfCards }}</p>
 						<card kana="kana"></card>
 						<br />
-						<button type="button" class="btn btn-warning" ng-click="reviewLater(kana)">Review later</button>
-						<button type="button" class="btn btn-success" ng-click="nextCard()">Next card</button>
+						<button type="button" class="btn btn-warning" ng-click="reviewLater(kana)">Review Later</button>
+						<button type="button" class="btn btn-success" ng-click="nextCard()">Next Card</button>
 					</div>
 			</div>
 
