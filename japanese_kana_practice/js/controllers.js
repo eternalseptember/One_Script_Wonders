@@ -45,9 +45,9 @@ KanaFlash.controller('KanaController', ['$scope', '$location', 'choicesService',
 	$scope.$watch('typeChoice.selected', function(newValue) {	
 		if (newValue !== null) {
 			$scope.maxNumOfCards = 0;
-			if (newValue['Basic']) $scope.maxNumOfCards += 46;
-			if (newValue['Voiced']) $scope.maxNumOfCards += 25;
-			if (newValue['Combo']) $scope.maxNumOfCards += 33;
+			if (newValue.Basic) $scope.maxNumOfCards += 46;
+			if (newValue.Voiced) $scope.maxNumOfCards += 25;
+			if (newValue.Combo) $scope.maxNumOfCards += 33;
 		}
 	}, true);
 	
@@ -66,12 +66,15 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 	$scope.cardsList = getCards();
 	$scope.cardsIndex = 0;
 	$scope.maxNumOfCards = $scope.cardsList.length;
+	$scope.reviewDeck = getReviewDeck();
 
 	$scope.reviewLater = function(card) {
 		console.log('Review later: ' + JSON.stringify(card));
 
-		//if (!isDuplicate(card))
-			// Add to review deck
+		if (!isDuplicate(card)) {
+			$scope.reviewDeck.push(card);
+			localStorage.setItem('reviewDeck', JSON.stringify($scope.reviewDeck));
+		}
 		
 		$scope.nextCard();
 	};
@@ -86,8 +89,9 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 	};
 
 	function isDuplicate(card) {
-		//
-	};
+		// is the card in the reviewDeck already?
+		// kana.char is unique
+	}
 
 	function getCards() {
 		var cards = [];
@@ -104,7 +108,15 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 			localStorage.setItem('cards', JSON.stringify(cards));
 		}
 		return cards;
-	};
+	}
+
+	function getReviewDeck() {
+		var savedCards = localStorage.getItem('reviewDeck');
+		if ((savedCards !== null) && (savedCards.length > 2)) 
+			return JSON.parse(savedCards);
+		else 
+			return [];
+	}
 
 	function getNewCards(kanaChoice, typeChoice) {
 		var cardsList = [];
@@ -127,7 +139,7 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 		cardsList = shuffle(cardsList);
 		cardsList = dealCards(cardsList);
 		return cardsList;
-	};
+	}
 	
 	function shuffle(listOfCards) {
 		let counter = listOfCards.length;
@@ -141,24 +153,25 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 			listOfCards[index] = temp;
 		}
 		return listOfCards;
-	};
+	}
 
 	function dealCards(listOfCards) {
 		var howMany = getCount();
 		return listOfCards.slice(0, howMany);
-	};
+	}
 
 	function getCount() {
 		var numOfCards = choicesService.numOfCards;
 		var maxNumOfCards = choicesService.maxNumOfCards;
 		return (numOfCards <= maxNumOfCards) ? numOfCards : maxNumOfCards;
-	};
+	}
 
 }]);
 
 
 KanaFlash.controller('ReviewDeckController', ['$scope', function($scope) {
-	$scope.cardsList = getCards();
+
+	$scope.cardsList = getReviewDeck();
 	$scope.cardsIndex = 0;
 	$scope.maxNumOfCards = $scope.cardsList.length;
 
@@ -179,19 +192,30 @@ KanaFlash.controller('ReviewDeckController', ['$scope', function($scope) {
 			$scope.cardsIndex = 0;
 	};
 
-	function getCards() {
-		var cards = [];
-
-		// Checks to see if there's already a deck of cards saved in localStorage.
-		// It checks the length to be greater than 2 because cards is stored as a string,
-		// and an empty array would be '[]', which is two characters long.
-		var savedCards = localStorage.getItem('cards');
+	function getReviewDeck() {
+		var savedCards = localStorage.getItem('reviewDeck');
 		if ((savedCards !== null) && (savedCards.length > 2)) {
-			cards = JSON.parse(savedCards);
+			var cards = JSON.parse(savedCards);
+			cards = shuffle(cards);
+			return cards;
 		}
-		return cards;
-	};
+		else
+			return [];
+	}
 
+	function shuffle(listOfCards) {
+		let counter = listOfCards.length;
+
+		while (counter > 0) {
+			let index = Math.floor(Math.random() * counter);
+			counter--;
+
+			let temp = listOfCards[counter];
+			listOfCards[counter] = listOfCards[index];
+			listOfCards[index] = temp;
+		}
+		return listOfCards;
+	}
 
 }]);
 
@@ -219,6 +243,6 @@ KanaFlash.controller('ChartsController', ['$scope', 'kanaChartService', function
 			kanaChart.push(kanaList.slice(i, i + size));
 		}
 		return kanaChart;
-	};
+	}
 
 }]);

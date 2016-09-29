@@ -6,11 +6,11 @@
 			<p>Click on the kana to hear the pronounciation. If you guessed correctly, click on the green button to go to the next card. If you need to review the card again, click on the yellow "Review Later" button.</p>
 
 			<br /><br />
-			<div ng-show="cardsList.length <= 0">
+			<div ng-show="maxNumOfCards <= 0">
 				<p>No deck has been created yet. Click <a href="#/">here</a> to start!</p>
 			</div>
 
-			<div ng-show="cardsList" ng-repeat="kana in cardsList">
+			<div ng-show="maxNumOfCards" ng-repeat="kana in cardsList">
 					<div ng-if="cardsIndex == $index">
 						<p>Progress: {{ cardsIndex + 1 }} / {{ maxNumOfCards }}</p>
 						<card kana="kana"></card>

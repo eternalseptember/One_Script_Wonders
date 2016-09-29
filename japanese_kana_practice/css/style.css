@@ -49,8 +49,8 @@ body {
 }
 
 /* User styling here */
-h3 a:hover {
-  text-decoration: none;
+h3 a {
+  text-decoration: none !important;
 }
 
 .centered-text {

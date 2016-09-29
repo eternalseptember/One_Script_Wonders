@@ -6,11 +6,11 @@
 			<p>Click on the kana to hear the pronounciation. If you guessed correctly, click on the blue button to remove the card from the review deck. If you need to review the card again, click on the yellow "Pass" button.</p>
 
 			<br /><br />
-			<div ng-show="cardsList.length <= 0">
-				<p>No deck has been created yet. Click <a href="#/">here</a> to start!</p>
+			<div ng-show="maxNumOfCards <= 0">
+				<p>No review deck has been created yet. Click <a href="#/">here</a> to start!</p>
 			</div>
 
-			<div ng-show="cardsList" ng-repeat="kana in cardsList">
+			<div ng-show="maxNumOfCards" ng-repeat="kana in cardsList">
 					<div ng-if="cardsIndex == $index">
 						<p>Progress: {{ cardsIndex + 1 }} / {{ maxNumOfCards }}</p>
 						<card kana="kana"></card>

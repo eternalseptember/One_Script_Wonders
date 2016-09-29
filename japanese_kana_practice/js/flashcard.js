@@ -18,7 +18,7 @@ KanaFlash.config(function($routeProvider) {
 		.when('/chart', {
 			templateUrl: 'pages/chart.html',
 			controller: 'ChartsController'
-		})
+		});
 });
 
 
@@ -26,8 +26,8 @@ KanaFlash.config(function($routeProvider) {
 KanaFlash.controller('HeaderController', ['$scope', '$location', function($scope, $location) {
 	$scope.isActive = function(viewLocation) {
 		//return viewLocation === $location.path();
-		return $location.path().indexOf(viewLocation) == 0;
-	}
+		return $location.path().indexOf(viewLocation) === 0;
+	};
 }]);
 
 
@@ -50,7 +50,7 @@ KanaFlash.directive('kanaTable', function() {
 			typeChoice: "@",
 			colSize: "@",
 		}
-	}
+	};
 });
 
 
@@ -66,11 +66,11 @@ KanaFlash.directive('playSound', function() {
 				var obj = document.createElement("audio");
 				obj.src="sounds/" + scope.kana.sound + ".mp3";
 				obj.play();
-			}
+			};
 		},
 		template: 
 			'<a href="javascript:void(0)" ng-click="playSound()" ng-bind-html="kana.char">{{ kana.char }}</a>'
-	}
+	};
 });
 
 
@@ -82,5 +82,5 @@ KanaFlash.directive('card', function() {
 		scope: {
 			kana: "=",
 		}
-	}
+	};
 });
