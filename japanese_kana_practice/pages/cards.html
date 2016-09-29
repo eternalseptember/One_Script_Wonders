@@ -11,7 +11,7 @@
 				<p>No deck has been created yet. Click <a href="#/">here</a> to start!</p>
 			</div>
 
-			<div ng-show="maxNumOfCards" ng-repeat="kana in cardsList">
+			<div ng-show="maxNumOfCards" ng-if="done === false" ng-repeat="kana in cardsList">
 					<div ng-if="cardsIndex == $index">
 						<p>Progress: {{ cardsIndex + 1 }} / {{ maxNumOfCards }}</p>
 						<card kana="kana"></card>
@@ -19,6 +19,10 @@
 						<button type="button" class="btn btn-warning" ng-click="reviewLater(kana)">Review Later</button>
 						<button type="button" class="btn btn-success" ng-click="nextCard()">Next Card</button>
 					</div>
+			</div>
+
+			<div ng-if="done === true">
+				<p>Finished with this deck! Click <a href="#/">here</a> to create a new set of decks or go <a href="#/review">review</a>!</p>
 			</div>
 
 		</div>

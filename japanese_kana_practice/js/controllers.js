@@ -71,29 +71,28 @@ KanaFlash.controller('CardsController', ['$scope', 'choicesService', 'kanaChartS
 	$scope.cardsIndex = 0;
 	$scope.maxNumOfCards = $scope.cardsList.length;
 	$scope.reviewDeck = getReviewDeck();
+	$scope.done = false;
 
 	$scope.reviewLater = function(card) {
 		if (!isDuplicate(card)) {
-			console.log('Not a duplicate. Adding: ' + JSON.stringify(card));
 			$scope.reviewDeck.push(card);
 			localStorage.setItem('reviewDeck', JSON.stringify($scope.reviewDeck));
 		}
-		else
-			console.log('Duplicate: ' + card.sound + ' ' + card.kana);
 		
 		$scope.nextCard();
 	};
 
 	$scope.nextCard = function() {
 		$scope.cardsIndex += 1;
-		// loop around for testing purposes
-		if ($scope.cardsIndex >= ($scope.cardsList.length))
-			$scope.cardsIndex = 0;
+
+		if ($scope.cardsIndex >= ($scope.cardsList.length)) {
+			// deletes the list of cards when current batch of cards is done
+			$scope.done = true;
+			localStorage.removeItem('cards');
+		}
 	};
 
 	function isDuplicate(card) {
-		// is the card in the reviewDeck already?
-		// kana.char is unique
 		return $scope.reviewDeck.some(function(reviewCard) {
 			return reviewCard.char === card.char;
 		});
@@ -181,19 +180,25 @@ KanaFlash.controller('ReviewDeckController', ['$scope', function($scope) {
 	$scope.cardsIndex = 0;
 	$scope.maxNumOfCards = $scope.cardsList.length;
 
+	$scope.$watch('cardsList', function(newCardSet) {
+		$scope.maxNumOfCards = newCardSet.length;
+	}, true);
+
 	$scope.removeCard = function(card) {
-		console.log('Remove: ' + JSON.stringify(card));
+		$scope.cardsList.splice($scope.cardsIndex, 1);
+		localStorage.setItem('reviewDeck', JSON.stringify($scope.cardsList));
 
-		// stuff here
-
-		$scope.nextCard();
+		if ($scope.cardsIndex >= ($scope.cardsList.length))
+			$scope.cardsIndex = 0;
 	};
 
 	$scope.nextCard = function() {
 		$scope.cardsIndex += 1;
-		// loop around for testing purposes
-		if ($scope.cardsIndex >= ($scope.cardsList.length))
+
+		if ($scope.cardsIndex >= ($scope.cardsList.length)) {
+			$scope.cardsList = shuffle($scope.cardsList);
 			$scope.cardsIndex = 0;
+		}
 	};
 
 	function getReviewDeck() {
