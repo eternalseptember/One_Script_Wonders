@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Flichoirel</title>
+	<style>
+		body {
+			background-color:  #212f3d ;
+		}
+
+		.cards_list {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 800px;		
+		}
+
+		.cards {
+			padding: 2px;
+
+		}
+	</style>
+</head>
+
+
+
+<body>
+	<div class="cards_list" id="cards_list">
+
+	</div>
+
+
+	<script type="text/javascript">
+		const cards = [
+			"154_nael",
+			"126_vidofnir",
+			"081_byblos",
+			"038_behemoth",
+			"073_griffin",
+			"082_haurchefant",
+			"045_manderville",
+		]
+
+		for (const card of cards) {
+			var card_image = document.createElement("img");
+			card_image.id = card;
+			card_image.className ="cards";
+			card_image.src="images/" + card + ".png";
+			card_image.onclick = function() {
+				gray(card);
+			}
+
+			// either of these work
+			document.getElementsByClassName('cards_list')[0].appendChild(card_image);
+			//document.getElementById('cards_list').appendChild(card_image);
+		}
+
+		function gray(card) {
+			document.getElementById(card).style.filter = "grayscale(100%)";
+			document.getElementById(card).onclick = function() {
+				ungray(card);
+			}
+		}
+
+		function ungray(card) {
+			document.getElementById(card).style.filter = "grayscale(0)";
+			document.getElementById(card).onclick = function() {
+				gray(card);
+			}
+		}
+
+	</script>
+
+
+</body>
+
+</html>
